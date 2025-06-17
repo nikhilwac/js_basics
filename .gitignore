@@ -1,0 +1,8 @@
+js_boilerplate/express-boilerplate/node_modules
+js_boilerplate/express-boilerplate/dist
+js_boilerplate/express-boilerplate/.env
+
+# Ignore logs
+js_boilerplate/node-api-boilerplate/node_modules
+
+practice/node_modules
