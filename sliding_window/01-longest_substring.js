@@ -1,22 +1,29 @@
-function lengthOfLongestSubstring(str) {
-  let left = 0;
-  let right = 0;
-  let maxLength = 0;
+function longestSubstring(str) {
   const charIndexMap = new Map();
+  let start = 0;
+  let maxLength = 0;
+  let longestSubstring = "";
 
-  if (str.length === 0) return 0;
+  for (let end = 0; end < str.length; end++) {
+    const currrentChar = str[end];
 
-  while (right < str.length) {
-    const currentChar = str[right];
-
-    if (charIndexMap.has(currentChar)) {
-      left = Math.max(charIndexMap.get(currentChar) + 1, left);
+    // If the character is already in the map, move the start pointer
+    if (charIndexMap.has(currrentChar)) {
+      start = Math.max(start, charIndexMap.get(currrentChar) + 1);
     }
+    // Update the character's index in the map
+    charIndexMap.set(currrentChar, end);
 
-    charIndexMap.set(currentChar, right);
-    maxLength = Math.max(maxLength, right - left + 1);
-    right++;
+    // Calculate the length of the current substring
+    const currentLength = end - start + 1;
+    // Update maxLength and longestSubstring if current is longer
+    if (currentLength > maxLength) {
+      maxLength = currentLength;
+      longestSubstring = str.substring(start, end + 1);
+    }
   }
-
-  return maxLength;
+  return { longestSubstring, maxLength };
 }
+
+console.log(longestSubstring("abcabtcdbb")); // Output: "abc"
+console.log(longestSubstring("pwwkew")); // Output: "wke"

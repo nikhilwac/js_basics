@@ -23,3 +23,15 @@ console.log(unique);
 
 let uniq = nums.filter((num) => nums.indexOf(num) === nums.lastIndexOf(num));
 console.log(uniq);
+
+function containDuplicate(nums) {
+  let seen = new Set();
+  for (let num of nums) {
+    if (seen.has(num)) {
+      return true;
+    }
+    seen.add(num);
+  }
+  return false;
+}
+console.log(containDuplicate(nums)); // Output: true

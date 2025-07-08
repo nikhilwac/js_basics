@@ -6,22 +6,24 @@ function topFreequent(nums, k = 2) {
   for (let num of nums) {
     freeqMap.set(num, (freeqMap.get(num) || 0) + 1);
   }
-  console.log(freeqMap);
-  console.log([...freeqMap.entries()]);
-  console.log([...freeqMap.entries()].sort());
-  console.log([...freeqMap.entries()].sort((a, b) => b[1] - a[1]));
 
   const sorted = [...freeqMap.entries()].sort((a, b) => b[1] - a[1]);
 
   return sorted.slice(0, k).map((pair) => pair[0]);
 }
 
-console.log(topFreequent(nums));
+console.log(freequentElements(nums, 2)); // Output: [3, 1]
 
-const numbers = [5, 2, 9, 1, 5, 6, 10, 11, 22];
-numbers.sort((a, b) => b - a);
-console.log(numbers);
+function freequentElements(nums, k) {
+  const freeqMap = new Map();
 
-console.log(typeof numbers[0]);
+  for (const num of nums) {
+    freeqMap.set(num, (freeqMap.get(num) || 0) + 1);
+  }
 
-// console.log(numbers); // Output: [1, 2, 5, 5, 6, 9]
+  console.log(freeqMap);
+
+  const sorted = [...freeqMap.entries()].sort((a, b) => b[1] - a[1]);
+  console.log(sorted);
+  return sorted.slice(0, k).map((pair) => pair[0]);
+}

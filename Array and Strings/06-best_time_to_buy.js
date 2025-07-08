@@ -1,4 +1,4 @@
-let prices = [7, 2, 5, 3, 6, 1, 4];
+let prices = [7, 2, 7, 3, 6, 1, 4];
 
 function maxProfit(prices) {
   let max_profit = 0;
@@ -23,10 +23,26 @@ function maxProfit2(prices) {
       minPrice = price;
     }
     let profit = price - minPrice;
-    if (price > max_profit) {
+    if (profit > max_profit) {
       max_profit = profit;
     }
   }
 
   return max_profit;
+}
+
+function maxProfit3(prices) {
+  let maxProfit = 0;
+  let minPrice = Infinity;
+  for (let price of prices) {
+    if (price < minPrice) {
+      minPrice = price;
+    }
+    let profit = price - minPrice;
+    if (profit > maxProfit) {
+      maxProfit = profit;
+    }
+  }
+
+  return maxProfit;
 }
